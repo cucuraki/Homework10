@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Homework10</string>
+    <string name="c1">All</string>
+    <string name="c2">Party</string>
+    <string name="c3">Camping</string>
+    <string name="c4">Category1</string>
+    <string name="c5">Category2</string>
+    <string name="c6">Category3</string>
+    <string name="price1">120$</string>
+    <string name="price2">130$</string>
+    <string name="price3">140$</string>
+    <string name="title">Tittle</string>
+</resources>
