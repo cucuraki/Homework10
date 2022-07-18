@@ -61,55 +61,60 @@ class MainActivity : AppCompatActivity() {
     private fun filterByCategory(position: Int) {
         val category = myAdapter.getCategory(position, this)
         if(category == Categories.DEFAULT){
-            itemAdapter.data = itemsData
-            itemAdapter.notifyDataSetChanged()
+            itemAdapter.setData(itemsData)
             return
         }
-        var tempData = itemsData.filter { it -> it.category == myAdapter.getCategory(position, this) }
-        itemAdapter.data = tempData.toMutableList()
-        itemAdapter.notifyDataSetChanged()
+        val tempData = itemsData.filter { it -> it.category == myAdapter.getCategory(position, this) }
+        itemAdapter.setData(tempData.toMutableList())
     }
 
     private fun itemsInitialization() {
         itemsData = mutableListOf(
             ItemData(
+                1,
                 R.drawable.image,
                 getString(R.string.title) + "1",
                 getString(R.string.price1),
                 Categories.CATEGORY1
             ),
             ItemData(
+                2,
                 R.drawable.image2,
                 getString(R.string.title) + "2",
                 getString(R.string.price2),
                 Categories.CATEGORY2
             ),
             ItemData(
+                3,
                 R.drawable.image,
                 getString(R.string.title) + "3",
                 getString(R.string.price3),
                 Categories.CAMPING
             ),
             ItemData(
+                4,
                 R.drawable.image,
                 getString(R.string.title) + "4",
                 getString(R.string.price1),
                 Categories.PARTY
             ),
             ItemData(
+                5,
                 R.drawable.image2,
                 getString(R.string.title) + "5",
                 getString(R.string.price1),
                 Categories.CATEGORY3
             ),
             ItemData(
+                6,
                 R.drawable.image3,
                 getString(R.string.title) + "6",
                 getString(R.string.price1),
                 Categories.CAMPING
             )
         )
-        itemAdapter = ItemAdapter(itemsData)
+        itemAdapter = ItemAdapter()
+        itemAdapter.setData(itemsData)
         binding.items.adapter = itemAdapter
         binding.items.layoutManager = GridLayoutManager(this, 2)
     }

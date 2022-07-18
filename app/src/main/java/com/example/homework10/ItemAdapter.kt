@@ -2,12 +2,13 @@ package com.example.homework10
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.homework10.databinding.ItemsLayoutBinding
 
-class ItemAdapter(var data: MutableList<ItemData>) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
+class ItemAdapter() : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
-
+    private lateinit var data: MutableList<ItemData>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ItemViewHolder(
         ItemsLayoutBinding.inflate(LayoutInflater.from(parent.context))
     )
@@ -20,7 +21,16 @@ class ItemAdapter(var data: MutableList<ItemData>) : RecyclerView.Adapter<ItemAd
     }
 
     override fun getItemCount() = data.size
-
+    fun setData(newList: MutableList<ItemData>){
+        if(!this::data.isInitialized){
+            data = newList
+            return
+        }
+        val diffUtil = MyDiffUtil(data, newList)
+        val diffResult = DiffUtil.calculateDiff(diffUtil)
+        data = newList
+        diffResult.dispatchUpdatesTo(this)
+    }
 
     inner class ItemViewHolder(binding: ItemsLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
